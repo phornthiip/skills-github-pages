@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เซอร์ไพรส์วันวาเลนไทน์</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FFE4E1;
+            text-align: center;
+            padding-top: 50px;
+        }
+        h1 {
+            font-size: 36px;
+            color: #ff4081;
+        }
+        .heart {
+            font-size: 80px;
+            color: pink;
+        }
+        .message {
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+        }
+        .img-container img {
+            width: 200px;
+            height: 200px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+        .img-container img:hover {
+            transform: scale(1.1);
+        }
+        .button {
+            background-color: #FFF0F5;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        /* Styling for the second page */
+        .second-page {
+            display: none;
+            background-color: #FFE4E1;
+            text-align: center;
+            padding: 50px;
+        }
+        .second-page h1 {
+            font-size: 36px;
+            color: #ff4081;
+        }
+        .second-page .heart {
+            font-size: 80px;
+            color: pink;
+        }
+        .second-page .message {
+            font-size: 24px;
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        .second-page .audio-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="firstPage">
+        <h1>HAPPY VALENTINE'S DAY</h1>
+        <div class="heart">❤️</div>
+
+        <div class="img-container">
+            <img src="https://scontent.fbkk5-3.fna.fbcdn.net/v/t39.30808-6/461291031_1615419145995571_1736297583758066592_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeE9awrRrcUdBiJiLSz2oV6sIecTdw39M1Qh5xN3Df0zVHtcb3K_joUB1YWD9qy1_PrqJjyJDcWgA5kGxLl_shdm&_nc_ohc=yd2ZoNtHTq4Q7kNvgHq10F_&_nc_oc=AdiiQwJ-ocF7DTC5yIE7LZ0Kd1M-R4U_RHisL_QLLGtogEwaM50tYDAH9if4ePJ9ejKp_3B_GKM3BXZvzotlkcCH&_nc_zt=23&_nc_ht=scontent.fbkk5-3.fna&_nc_gid=AH7nISHJHj-s_r4OLpgURN1&oh=00_AYA4RKqkvl-6N22b84OAUQR9VzbQ_vIi3TPr-GdIBIzFTQ&oe=67ADB1D2" alt="Cute Image" id="surpriseImage" onclick="changeImage()">
+        </div>
+
+        <div class="message">
+            <p>รักเธอมากนะหรั่งน้อย</p>
+            <p>ขอบคุณที่เข้ามาในชีวิตเค้านะ เค้ารักเธอนะ</p>
+        </div>
+
+        <button class="button" onclick="revealSecret()">มีอะไรจะบอก Click Me</button>
+    </div>
+
+    <div id="secondPage" class="second-page">
+        <h1>ให้เพลงนี้เป็นตัวแทนของเราไปเสมอนะ</h1>
+        <div class="heart">❤️</div>
+
+        <div class="message">
+            <p>ข้างกันไปตลอดชีวิตเลยนะ</p>
+            <p>เค้ารักเธอนะขอยืนอยู่ข้างกันไปตลอดเลย</p>
+	    <p>สุขสันต์วันคบรอบและวาเลนไทน์ของเรานะคะ รักที่สุด</p>
+        </div>
+
+        <!-- ฝังเพลงจาก YouTube -->
+        <div class="audio-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/ks7p6DA0dKk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <button class="button" onclick="goBack()">กลับไปหน้าหลัก</button>
+    </div>
+
+    <script>
+        let isFirstImage = true;
+
+        function changeImage() {
+            const image = document.getElementById("surpriseImage");
+            if (isFirstImage) {
+                image.src = "https://via.placeholder.com/200/FF4081/FFFFFF?text=You're+Special";
+                isFirstImage = false;
+            } else {
+                image.src = "https://via.placeholder.com/200/FF4081/FFFFFF?text=I+Love+You";
+                isFirstImage = true;
+            }
+        }
+
+        function revealSecret() {
+            // ซ่อนหน้าแรกและแสดงหน้าถัดไป
+            document.getElementById("firstPage").style.display = "none";
+            document.getElementById("secondPage").style.display = "block";
+        }
+
+        function goBack() {
+            // กลับไปยังหน้าแรก
+            document.getElementById("secondPage").style.display = "none";
+            document.getElementById("firstPage").style.display = "block";
+        }
+    </script>
+</body>
+</html>

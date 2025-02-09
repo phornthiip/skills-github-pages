@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เว็บไซต์คำถาม</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #FFE4E1;
+            text-align: center;
+            padding-top: 20px;
+            transition: background-color 0.5s ease-in-out;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #ff4081;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .login-container {
+            background-color: #FFF0F5;
+            padding: 30px;
+            margin: 50px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            transition: transform 0.3s ease;
+        }
+
+        .login-container:hover {
+            transform: scale(1.05);
+        }
+
+        .login-container input {
+            font-size: 18px;
+            padding: 10px;
+            margin-top: 20px;
+            width: 100%;
+            border-radius: 5px;
+            border: 2px solid #ff4081;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        .login-container input:focus {
+            border-color: #ff4081;
+            box-shadow: 0 0 8px rgba(255, 64, 129, 0.7);
+        }
+
+        .login-container button {
+            background-color: #ff4081;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 18px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .login-container button:hover {
+            background-color: #f50057;
+            transform: scale(1.1);
+        }
+
+        .login-container button:active {
+            transform: scale(0.95);
+        }
+
+        /* Keyframe Animation for fading in the title */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Page styles */
+        .page {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .question {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- หน้าเข้าสู่ระบบ (กรอกรหัส) -->
+    <div id="loginPage" class="active">
+        <h1>กรุณากรอกรหัสเพื่อเข้าเว็บไซต์</h1>
+        <div class="login-container">
+            <input type="password" id="passwordInput" placeholder="กรอกรหัส 140666">
+            <button onclick="checkPassword()">เข้าสู่ระบบ</button>
+        </div>
+    </div>
+
+    <!-- หน้า 1: เจอกันครั้งแรกที่ไหน -->
+    <div id="page1" class="page">
+        <h1>เจอกันครั้งแรกที่ไหน?</h1>
+        <div class="question">
+            <select id="firstLocation">
+                <option value="ที่ทำงาน">ที่ทำงาน</option>
+                <option value="สวนน้ำ">สวนน้ำ</option>
+                <option value="สวนสนุก">สวนสนุก</option>
+            </select>
+            <br><br>
+            <button onclick="nextPage(2)">ถัดไป</button>
+        </div>
+    </div>
+
+    <!-- หน้า 2: เจอกันวันที่เท่าไหร่ -->
+    <div id="page2" class="page">
+        <h1>เจอกันวันที่เท่าไหร่?</h1>
+        <div class="question">
+            <select id="meetingDate">
+                <option value="วันที่ 6">วันที่ 6</option>
+                <option value="วันที่ 8">วันที่ 8</option>
+                <option value="วันที่ 14">วันที่ 14</option>
+            </select>
+            <br><br>
+            <button onclick="nextPage(3)">ถัดไป</button>
+        </div>
+    </div>
+
+    <!-- หน้า 3: ใครขอใครเป็นแฟน -->
+    <div id="page3" class="page">
+        <h1>ใครขอใครเป็นแฟน?</h1>
+        <div class="question">
+            <select id="requestor">
+                <option value="เธอ">เธอ</option>
+                <option value="เค้า">เค้า</option>
+                <option value="ไม่มี">ไม่มี</option>
+            </select>
+            <br><br>
+            <button onclick="nextPage(4)">ถัดไป</button>
+        </div>
+    </div>
+
+    <!-- หน้า 4: เธอรักเค้าแค่ไหน -->
+    <div id="page4" class="page">
+        <h1>เธอรักเค้าแค่ไหน?</h1>
+        <div class="question">
+            <textarea id="loveAnswer" placeholder="กรอกคำตอบของคุณที่นี่" rows="4" cols="50"></textarea>
+            <br><br>
+            <button onclick="submitAnswer()">ส่งคำตอบ</button>
+        </div>
+    </div>
+
+    <!-- หน้า 5: ของขวัญคือเค้าเอง -->
+    <div id="page5" class="page">
+        <h1>ของขวัญคือเค้าเอง!</h1>
+        <img src="https://scontent.fbkk5-8.fna.fbcdn.net/v/t51.75761-15/475525043_18289248280244248_9089941507805259793_n.jpg?stp=dst-jpg_tt6&_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHP7x5EXaGLFd5rJlCbu1Hp0o-VUihEbXnSj5VSKERteVya35VkR0hk-kZ2sOscVVwoLUkRv9oqF6XfU_XyuDf8&_nc_ohc=q3Qi2QUX-CIQ7kNvgEIBDZG&_nc_oc=AdiZ9HolSLS8ic7t6p2Ef7aRg3froy5odYch8bsvRhJ5qyiQMMbQDTNn_QILmE8VroBHHRn7fSEvCZb6jpGW2nzB&_nc_zt=23&_nc_ht=scontent.fbkk5-8.fna&_nc_gid=A2_nLjCx2rWn9vDoQSh-6vC&oh=00_AYA5nvhG3HAuvW1MHwHQaPppRKvVJ7dxdBPbQYkiN2Uu2w&oe=67ADC14B" alt="ของขวัญ" width="300">
+    </div>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById("passwordInput").value;
+            const correctPassword = "140666";
+
+            if (password === correctPassword) {
+                // ซ่อนหน้า login และแสดงหน้า 1
+                document.getElementById("loginPage").style.display = "none";
+                document.getElementById("page1").style.display = "block";
+            } else {
+                alert("รหัสไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง");
+            }
+        }
+
+        function nextPage(pageNumber) {
+            // ซ่อนทุกหน้า
+            document.querySelectorAll('.page').forEach(page => page.style.display = "none");
+            // แสดงหน้าตามหมายเลข
+            document.getElementById('page' + pageNumber).style.display = "block";
+        }
+
+        function submitAnswer() {
+            alert("คำตอบของคุณได้รับการส่งเรียบร้อยแล้ว");
+            // แสดงหน้า 5
+            document.querySelectorAll('.page').forEach(page => page.style.display = "none");
+            document.getElementById('page5').style.display = "block";
+        }
+    </script>
+</body>
+</html>
